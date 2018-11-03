@@ -1,0 +1,20 @@
+version: "3"
+
+networks:
+  icecast-network:
+    external: true
+
+services:
+  streamforce-dev:
+    image: ncrawler/streamforce:squashed-latest
+    container_name: streamforce
+    volumes:
+      - ./configs/prod.xml:/application/configs/prod.xml
+      - ./playlists:/application/playlists
+      - ./data:/application/data
+
+    labels:
+      com.ezstream.internal.name: sample
+
+    networks:
+      icecast-network:
